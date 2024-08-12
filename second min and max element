@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int i,ar[30],n,fmin,smin,fmax,smax,min,max;
+    cout<<"Enter the no.of elements:";
+    cin>>n;
+     cout<<"Enter the elements:";
+     for(i=0;i<n;i++)
+     {
+         cin>>ar[i];
+     }
+     if(ar[0]<ar[1])
+     {
+         fmin=ar[0];
+         smin=ar[1];
+     }
+     else if(ar[1]<ar[0])
+     {
+         fmin=ar[1];
+         smin=ar[0];
+     }
+     if(ar[0]>ar[1])
+     {
+         fmax=ar[0];
+         smax=ar[1];
+     }
+     else if(ar[1]>ar[0])
+     {
+         fmax=ar[1];
+         smax=ar[0];
+     }
+     for(i=0;i<n;i++)
+     {
+        if(ar[i]<fmin)
+     {
+         smin=fmin;
+         fmin=ar[i];
+     }
+        else if(ar[i]<smin&&ar[i]!=fmin)
+        {
+            smin=ar[i];
+        }
+          if(ar[i]>fmax)
+     {
+         smax=fmax;
+         fmax=ar[i];
+     }
+     else if(ar[i]>smax&&ar[i]!=fmax)
+        {
+            smax=ar[i];
+        }
+     }
+     cout<<"Second min element:"<<smin<<endl;
+     cout<<"Second max element:"<<smax<<endl;
+     return 0;
+}
