@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int i,n,c=0,ar[20],j;
+    cout<<"Enter the no.of elements:";
+    cin>>n;
+    cout<<"Enter the elements:";
+    for(i=0;i<n;i++)
+        cin>>ar[i];
+    bool isunique=true;
+    for(i=0;i<n;i++)
+    {
+        for(j=1;j<i;j++)
+        {
+            if(ar[i]==ar[j])
+            {
+                isunique=false;
+                break;}
+        }
+        if(i==j)
+            c++;
+    }
+    cout<<"Count:"<<c<<endl;
+    return 0;
+}
