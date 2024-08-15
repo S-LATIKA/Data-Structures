@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+string frequencySort(string s) {
+    int freq[256]={0};
+    for (int i = 0; i < s.size(); ++i) {
+        freq[s[i]]++;
+    }
+    for (int i = 0; i < s.size() - 1; ++i) {
+        for (int j = i + 1; j < s.size(); ++j) {
+            if (freq[s[i]] < freq[s[j]] || (freq[s[i]] == freq[s[j]] && s[i] < s[j])) {
+                swap(s[i], s[j]);
+            }
+        }
+    }
+    return s;
+}
+int main() {
+    string input = "tree";
+    string sortedString = frequencySort(input);
+    cout << "Original string: " << input << endl;
+    cout << "Sorted string by frequency: " << sortedString << endl;
+    return 0;
+}
