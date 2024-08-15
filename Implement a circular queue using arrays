@@ -1,0 +1,90 @@
+#include<iostream>
+using namespace std;
+class intQ
+{
+private:
+    int q[50];
+    int n;
+    int front=-1;
+    int rear=-1;
+public:
+    intQ(int size)
+    {
+        n = size;
+    }
+    void enqueue(int elem)
+    {
+        if ((rear + 1) % n == front) // Queue is full
+        {
+            cout << "Queue is full" << endl;
+            return;
+        }
+        if (rear == -1) // First element
+        {
+            front = 0;
+            rear = 0;
+        }
+        else
+        {
+            rear = (rear + 1) % n;
+        }
+        q[rear] = elem;
+    }
+    int dequeue()
+    {
+        if (front == -1) // Queue is empty
+        {
+            cout << "Queue is empty" << endl;
+            return -1;
+        }
+        int elem = q[front];
+        if (front == rear) // Only one element
+        {
+            front = -1;
+            rear = -1;
+        }
+        else
+        {
+            front = (front + 1) % n;
+        }
+        return elem;
+    }
+    void display()
+    {
+        if (front == -1)
+        {
+            cout << "Queue is empty" << endl;
+            return;
+        }
+        int i = front;
+        while (true)
+        {
+            cout << q[i] << " ";
+            if (i == rear)
+                break;
+            i = (i + 1) % n;
+        }
+        cout << endl;
+    }
+};
+
+int main()
+{
+    intQ q1(20);
+    intQ q2(15);
+    q1.enqueue(10);
+    q1.enqueue(30);
+    q1.enqueue(20);
+    q2.enqueue(15);
+    q2.enqueue(55);
+    q2.enqueue(24);
+    q2.enqueue(50);
+    cout<<"Queue 1: ";
+    q1.display();
+    cout<<"Queue 2: ";
+    q2.display();
+    q2.dequeue();
+    cout<<"After deleting an element:";
+    q2.display();
+    return 0;
+}
