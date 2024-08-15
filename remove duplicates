@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+class Node {
+public:
+    int data;
+    Node* next;
+    Node* prev;
+};
+void inserting(Node** head,int data)
+{
+    Node* n= new Node();
+    n->data=data;
+    n->next=*head;
+    n->prev=NULL;
+    *head=n;
+}
+void removeduplicate(Node* head) {
+   Node* curr=head;
+   while(curr!=NULL&&curr->next!=NULL)
+   {
+       if(curr->data==curr->next->data)
+       {
+           Node* p=NULL;
+           p=curr->next;;
+           curr->next=curr->next->next;
+           curr->next->prev=curr;
+           delete p;
+       }
+       else
+        curr=curr->next;
+   }
+}
+void display(Node* head)
+{
+    Node* curr=head;
+    while(curr->next!=NULL)
+    {
+
+        cout<<curr->data<<" ";
+        curr=curr->next;
+    }
+    cout<<endl;
+}
+int main() {
+    Node* head=new Node();
+    int n,data;
+    cout<<"Enter no.of elements in linked list:";
+    cin>>n;
+    cout<<"Enter elements:";
+    for(int i=0;i<n;i++)
+    {
+        cin>>data;
+        inserting(&head,data);
+    }
+    cout<<"Original linked lists:"<<endl;
+    display(head);
+    cout<<endl;
+    removeduplicate(head);
+    cout<<"Sorted list:";
+    display(head);
+    return 0;
+}
