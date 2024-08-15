@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+class node {
+public:
+    int data;
+    node* next;
+};
+class stack{
+public:
+    node* head;
+    node* tail;
+    stack()
+    {
+        head = NULL;
+        tail = NULL;
+    }
+};
+stack* create()
+{
+    stack* s = new stack();
+    return s;
+}
+void push(int data, stack* s)
+{
+    node* temp = new node();
+    temp->data = data;
+    temp->next = s->head;
+    if (s->head == NULL)
+        s->tail = temp;
+    s->head = temp;
+}
+int pop(stack* s)
+{
+    if (s->head == NULL) {
+        cout << "stack is empty" << endl;
+        return 0;
+    }
+    else {
+        node* temp = s->head;
+        s->head = s->head->next;
+        int popped = temp->data;
+        delete temp;
+        return popped;
+    }
+}
+void merge(stack* s1, stack* s2)
+{
+if (s1->head == NULL)
+{
+    s1->head = s2->head;
+    s1->tail = s2->tail;
+    return;
+}
+s1->tail->next = s2->head;
+s1->tail = s2->tail;
+}
+void display(stack* s)
+{
+    node* temp = s->head;
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+}
+int main()
+{
+    stack* s1 = create();
+    stack* s2 = create();
+    push(6, s1);
+    push(5, s1);
+    push(4, s1);
+    push(9, s2);
+    push(8, s2);
+    push(7, s2);
+    merge(s1, s2);
+    display(s1);
+}
