@@ -1,0 +1,123 @@
+#include<iostream>
+using namespace std;
+class Node{
+public:
+int data;
+Node* next;
+Node* prev;
+};
+void inserting(Node** head,int data)
+{
+    Node* n= new Node();
+    n->data=data;
+    n->next=*head;
+    n->prev=NULL;
+    *head=n;
+}
+void mergelist(Node* n1,Node* n2,Node* n3,Node*& head4)
+{
+    Node* curr=NULL;
+    while(n1->next!=NULL&&n2->next!=NULL&&n3->next!=NULL)
+    {
+        Node* newnode=new Node();
+        if(head4==NULL)
+        {
+            head4=newnode;
+        }
+        if(n1->data<=n2->data&&n1->data<=n3->data)
+        {
+            newnode->data=n1->data;
+            n1=n1->next;
+        }
+        else if(n2->data<=n1->data&&n2->data<=n3->data)
+        {
+            newnode->data=n2->data;
+            n2=n2->next;
+        }
+        else
+        {
+            newnode->data=n3->data;
+            n3=n3->next;
+        }
+        if(curr!=NULL)
+        {
+            curr->next=newnode;}
+            curr=newnode;
+    }
+    while(n1->next!=NULL)
+    {
+        Node* newnode=new Node();
+        newnode->data=n1->data;
+        n1=n1->next;
+        curr->next=newnode;
+        curr=newnode;
+    }
+    while(n2->next!=NULL)
+    {
+        Node* newnode=new Node();
+        newnode->data=n2->data;
+        n2=n2->next;
+        curr->next=newnode;
+        curr=newnode;
+    }
+    while(n3->next!=NULL)
+    {
+        Node* newnode=new Node();
+        newnode->data=n3->data;
+        n3=n3->next;
+        curr->next=newnode;
+        curr=newnode;
+    }
+    return;
+}
+void display(Node* head)
+{
+    Node* curr=head;
+    while(curr->next!=NULL)
+    {
+        cout<<curr->data<<" ";
+        curr=curr->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+    Node* head4=NULL;
+    Node* head1=new Node();
+    Node* head2=new Node();
+    Node* head3=new Node();
+    int n1,n2,n3,data;
+    cout<<"Enter no.of elements in linked list1:";
+    cin>>n1;
+    cout<<"Enter elements:";
+    for(int i=0;i<n1;i++)
+    {
+        cin>>data;
+        inserting(&head1,data);
+    }
+    cout<<"Enter no.of elements in linked list2:";
+    cin>>n2;
+    cout<<"Enter elements:";
+    for(int i=0;i<n2;i++)
+    {
+        cin>>data;
+        inserting(&head2,data);
+    }
+    cout<<"Enter no.of elements in linked list3:";
+    cin>>n3;
+    cout<<"Enter elements:";
+    for(int i=0;i<n3;i++)
+    {
+        cin>>data;
+        inserting(&head3,data);
+    }
+    cout<<"Original linked lists:"<<endl;
+    display(head1);
+    display(head2);
+    display(head3);
+    cout<<endl;
+    mergelist(head1,head2,head3,head4);
+    cout<<"Sorted list:";
+    display(head4);
+    return 0;
+}
