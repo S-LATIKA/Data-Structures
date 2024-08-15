@@ -1,0 +1,27 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+void reverses(const char* str)
+{
+    int length=strlen(str);
+    char Stack[length];
+    int top=-1;
+    for(int i=0;i<length;++i)
+    {
+        Stack[++top]=str[i];
+    }
+    cout<<"Reversed string:";
+    while(top>=0)
+    {
+        cout<<Stack[top--];
+    }
+    cout<<endl;
+}
+int main()
+{
+    char input[10];
+    cout<<"Enter string:";
+    cin>>input;
+    reverses(input);
+    return 0;
+}
