@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+class Node {
+public:
+    int ID;
+    string name;
+    int salary;
+    Node* next;
+};
+void highestsal(Node* head)
+{
+    int max=0;
+    Node* curr=head;
+    while(curr!=NULL)
+    {
+        if(curr->salary>max)
+        {
+            max=curr->salary;
+        }
+        curr=curr->next;
+    }
+    cout<<"Highest salary:"<<max<<endl;
+}
+void display(Node* head)
+{
+    Node* curr=head;
+    while(curr!=NULL)
+    {
+        cout<<"ID:"<<curr->ID<<","<<"Name:"<<curr->name<<","<<"Salary:"<<curr->salary<<" "<<endl;
+        curr=curr->next;
+    }
+}
+int main()
+{
+    Node* head=new Node();
+    Node* s1=new Node();
+    Node* f1=new Node();
+    Node* t1=new Node();
+    head->ID=1;
+    head->name="shivani";
+    head->salary=2000;
+    head->next=s1;
+    s1->ID=2;
+    s1->name="varsha";
+    s1->salary=3000;
+    s1->next=f1;
+    f1->ID=3;
+    f1->name="sound";
+    f1->salary=1000;
+    t1->next=NULL;
+    cout<<"Original linked lists:"<<endl;
+    display(head);
+    cout<<endl;
+    highestsal(head);
+    return 0;
+}
