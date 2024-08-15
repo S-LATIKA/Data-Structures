@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int cards[10],n,i,j;
+    cout<<"Enter the size of array:";
+    cin>>n;
+    cout<<"Enter the cards:";
+    for(i=0;i<n;i++)
+        cin>>cards[i];
+    cout << "Unsorted cards:" << endl;
+    for (i = 0; i < n; i++) {
+        cout << cards[i] << " ";
+    }
+    cout << endl;
+    for (i = 1; i < n; i++) {
+        int key = cards[i];
+        j = i - 1;
+        while (j >= 0 && cards[j] > key) {
+            cards[j + 1] = cards[j];
+            j = j - 1;
+        }
+        cards[j + 1] = key;
+    }
+    cout << "Sorted cards in ascending order:" << endl;
+    for (i = 0; i < n; i++) {
+        cout << cards[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
